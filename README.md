@@ -176,3 +176,4 @@ Und wenn schon!
 
 * Wir haben die ganz Zeit *einen* Prozess geändert
 * Von wegen VM :)
+* I.e. Security ist 0815 Linux-Admin-Knowhow
