@@ -1,10 +1,10 @@
 # Ich
 
-erkan@linsenraum.de
-@erkuleswastaken
-xing/linkedin
-https://devops-training.de/
-https://devops-kubernetes-camp.de/
+* erkan@linsenraum.de
+* @erkuleswastaken
+* xing/linkedin
+* https://devops-training.de/
+* https://devops-kubernetes-camp.de/
 
 Und ja:  Freiberufler
 
@@ -29,7 +29,7 @@ Was haben wir?
 Ist doch wie eine VM
 
 ~~~
-docker container run --rm -ti --name vorlage ubuntu
+docker container run --rm -ti --name vorlage alpine
 ~~~
 
 * Prozessraum
@@ -73,7 +73,7 @@ chroot /tmp/container
 ps ax .. und ein Hups
 ~~~
 
-Genau das machen was da steht.
+Genau das machen was da steht. (`mount -t proc proc /proc`)
 
 Und schauen ob andere Prozess was in /tmp/container/proc sehen :)
 
@@ -102,6 +102,7 @@ Achso: wieder ein `pstree` mitlaufen lassen :)
 ~~~
 mkdir /sys/fs/cgroup/pids/lala
 echo 5 >/sys/fs/cgroup/pids/lala/pids.max
+
 echo $$ >/sys/fs/cgroup/pids/lala/tasks
 besser? 
 echo ContainerPid  >/sys/fs/cgroup/pids/lala/tasks
@@ -130,9 +131,6 @@ mount -t overlay overlay -o lowerdir=/tmp/container,upperdir=/tmp/upper2,workdir
 ~~~
 
 
-dd
-
-:
 
 # Netzwerk?
 
@@ -153,10 +151,10 @@ ip netns exec hallo ip a s
 ip link add hostende type veth peer name containerende
 ip link set containerende  netns hallo
 ip netns exec hallo ip a s
-ip netns exec jax ip link set containerende up
-ip netns exec jax ip a add 172.40.1.1/26 dev containerende
-                  ip link set hostende up
-                  ip a add 172.40.1.2/26 dev hostende
+ip netns exec hallo ip link set containerende up
+ip netns exec hallo ip a add 172.40.1.1/26 dev containerende
+                    ip link set hostende up
+                    ip a add 172.40.1.2/26 dev hostende
 ~~~
 
 Pingt ...
@@ -169,6 +167,9 @@ aber noch lange nicht fertig ... ;)
 Haben wir noch Zeit?
 
 Und wenn schon!
+
+* Container ohne Network starten. Mit nsenter Paketer installieren
+* Netzwerk in einem Container mit Host-Tools debuggen
 
 
 # Conclusio
