@@ -26,7 +26,7 @@ Und ja:  Freiberufler
 
 Was haben wir?
 
-Ist doch wie eine VM
+Ist doch wie eine VM!
 
 ~~~
 docker container run --rm -ti --name vorlage alpine
