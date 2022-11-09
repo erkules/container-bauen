@@ -53,7 +53,7 @@ Problem mit chroot?
 
 Wir haben quasi keine Isolierung `¯\_(ツ)_/¯`
 
-# Namspaces
+# Namespaces
 
 Genereeller Überblick:
 
