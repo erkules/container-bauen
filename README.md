@@ -1,10 +1,8 @@
 # Ich
 
 * erkan@linsenraum.de
-* @erkuleswastaken
 * xing/linkedin
-* https://devops-training.de/
-* https://devops-kubernetes-camp.de/
+* http://linsenraum.de 
 
 Und ja:  Freiberufler
 
@@ -29,7 +27,7 @@ Was haben wir?
 Ist doch wie eine VM!
 
 ~~~
-docker container run --rm -ti --name vorlage alpine
+docker container run -ti --name vorlage alpine
 ~~~
 
 * Prozessraum
@@ -55,7 +53,7 @@ Wir haben quasi keine Isolierung `¯\_(ツ)_/¯`
 
 # Namespaces
 
-Genereeller Überblick:
+Genereller Überblick:
 
 ~~~
 readlink /proc/self/ns/*
@@ -69,7 +67,7 @@ Imho noch ein `pstree` mitlaufen lassen:
 
 ~~~
 unshare -p -f -m -u -n  -i
-chroot /tmp/container
+chroot /tmp/container sh 
 ps ax .. und ein Hups
 ~~~
 
@@ -89,6 +87,14 @@ docker container run --volume /var/tmp:/srv  --rm -ti ubuntu
 * Hier ist es genau so nur *vor* dem chroot
 * Und ja nach dem unshare damit sonst niemand den mount mitbekommt \o/
 
+~~~
+mkdir /tmp/container/haha
+mount  --bind /var/tmp /tmp/container/haha
+unshare -p -f -m -u -n  -i
+chroot /tmp/container sh 
+ls /haha
+~~~
+
 # Cgroups
 
 Am Beispiel pids (limit)
@@ -99,15 +105,28 @@ docker container run --rm -ti --pids-limit 5  ubuntu
 
 Achso: wieder ein `pstree` mitlaufen lassen :)
 
+## Cgroups v1
+
+Sollte nicht mehr funzeen
+
 ~~~
 mkdir /sys/fs/cgroup/pids/lala
 echo 5 >/sys/fs/cgroup/pids/lala/pids.max
 
 echo $$ >/sys/fs/cgroup/pids/lala/tasks
 besser? 
-echo ContainerPid  >/sys/fs/cgroup/pids/lala/tasks
+echo $ContainerPid  >/sys/fs/cgroup/pids/lala/tasks
 ~~~
 
+## Cgroups v2
+
+~~~
+mkdir /sys/fs/cgroup/container
+echo $ContainerPid > /sys/fs/cgroup/container/cgroup.procs
+echo 5 >/sys/fs/cgroup/container/pids.max
+~~~
+
+Ruhig ein paar Prozesse im Container starten. Klappt schnell nicht 😎
 
 # Artefakt
 
