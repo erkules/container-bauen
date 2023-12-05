@@ -90,8 +90,8 @@ docker container run --volume /var/tmp:/srv  --rm -ti ubuntu
 
 ~~~
 mkdir /tmp/container/haha
-mount  --bind /var/tmp /tmp/container/haha
 unshare -p -f -m -u -n  -i
+mount  --bind /var/tmp /tmp/container/haha
 chroot /tmp/container sh 
 ls /haha
 ~~~
