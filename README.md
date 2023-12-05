@@ -198,6 +198,12 @@ Und wenn schon!
 * Von wegen VM :)
 * I.e. Security ist 0815 Linux-Admin-Knowhow
 
+# Btw:
+
+* Capabilities missing
+* Syscalls     missing
+* SELinux/Apparmor/Landlock missing
+
 # Links
 
 [bocker](https://github.com/p8952/bocker)
