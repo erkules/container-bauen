@@ -2,7 +2,7 @@
 
 * Erkan Yanar
 * erkan@linsenraum.de
-* xing/linkedin
+* xing/[linkedin](https://www.linkedin.com/in/erkanyanar/)
 * https://linsenraum.de 
 
 Und ja:  Freiberufler
@@ -16,7 +16,7 @@ Und ja:  Freiberufler
 
 # Container vs. VM
 
-* VMs eumulieren Hardware 
+* VMs emulieren Hardware 
 * Ein Container ist nur ein Prozess auf dem Host
 * Was immer das auch heißt
 
@@ -116,7 +116,7 @@ Achso: wieder ein `pstree` mitlaufen lassen :)
 
 ## Cgroups v1
 
-Sollte nicht mehr funzeen
+Sollte nicht (im Sinne von wtf. nutzt Du?) mehr funzen
 
 ~~~
 mkdir /sys/fs/cgroup/pids/lala
@@ -160,7 +160,7 @@ mkdir /tmp/upper2 /tmp/work2 /tmp/runningcontainer2
 mount -t overlay overlay -o lowerdir=/tmp/container,upperdir=/tmp/upper2,workdir=/tmp/work2  /tmp/runningcontainer2 
 ~~~
 
-Und jetze js nach /tmp/runningcontainer1 und /tmp/runningcontainer2 "reincontainern" (s.o)
+Und jetze je nach /tmp/runningcontainer1 und /tmp/runningcontainer2 "reincontainern" (s.o)
 
 # Netzwerk?
 
@@ -198,7 +198,7 @@ Haben wir noch Zeit?
 
 Und wenn schon!
 
-* Container ohne Network starten. Mit nsenter Paketer installieren
+* Container ohne Network starten. Mit nsenter Pakete installieren
 * Netzwerk in einem Container mit Host-Tools debuggen
 
 
