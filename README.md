@@ -3,7 +3,7 @@
 * Erkan Yanar
 * erkan@linsenraum.de
 * xing/linkedin
-* http://linsenraum.de 
+* https://linsenraum.de 
 
 Und ja:  Freiberufler
 
@@ -12,7 +12,7 @@ Und ja:  Freiberufler
 
 * Docker/LXC/systemd-nspawn/Rkt
 * Alles nur Linux
-* Jeder gute Admin sollte eh alles kennen was jetzt kommt.
+* Jeder gute Admin sollte eh alles kennen was jetzt kommt
 
 # Container vs. VM
 
@@ -67,14 +67,22 @@ Aber am Ende:
 Imho noch ein `pstree` mitlaufen lassen: 
 
 ~~~
-unshare -p -f -m -u -n  -i
+readlink /proc/self/ns/*
+unshare -p -f -m -u -n -i
+readlink /proc/self/ns/*
 chroot /tmp/container sh 
 ps ax .. und ein Hups
 ~~~
 
-Genau das machen was da steht. (`mount -t proc proc /proc`)
+Genau das machen was da steht. Auch wenn nicht (leere Ausgabe!): 
 
-Und schauen ob andere Prozess was in /tmp/container/proc sehen :)
+~~~
+mount -t proc proc /proc
+~~~
+
+Und schauen ob andere(host) Prozesse was in /tmp/container/proc sehen :)
+
+Wie "verlassen/terminieren" unseren Container.
 
 # Mount
 
@@ -129,6 +137,8 @@ echo 5 >/sys/fs/cgroup/container/pids.max
 
 Ruhig ein paar Prozesse im Container starten. Klappt schnell nicht 😎
 
+Wieder Container beenden
+
 # Artefakt
 
 Aber jeder Container schreibt doch ein einen eigenen Layer
@@ -150,7 +160,7 @@ mkdir /tmp/upper2 /tmp/work2 /tmp/runningcontainer2
 mount -t overlay overlay -o lowerdir=/tmp/container,upperdir=/tmp/upper2,workdir=/tmp/work2  /tmp/runningcontainer2 
 ~~~
 
-
+Und jetze js nach /tmp/runningcontainer1 und /tmp/runningcontainer2 "reincontainern" (s.o)
 
 # Netzwerk?
 
